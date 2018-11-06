@@ -25,7 +25,7 @@ class Login extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.isFormValid(this.state)) {
-      this.setState({ errors: [], loading: true });
+      this.setState({ errors: [], loading: true, password: '' });
       firebase
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -34,6 +34,7 @@ class Login extends React.Component {
         })
         .catch((err) => {
           console.log(err);
+          
           this.setState({
             errors: this.state.errors.concat(err),
             loading: false,
